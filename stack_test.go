@@ -32,8 +32,8 @@ func TestFrameFormat(t *testing.T) {
 	}, {
 		initpc,
 		"%+s",
-		"github.com/marmotedu/errors.init\n" +
-			"\t.+/github.com/marmotedu/errors/stack_test.go",
+		"github.com/jf-011101/errors.init\n" +
+			"\t.+/github.com/jf-011101/errors/stack_test.go",
 	}, {
 		0,
 		"%s",
@@ -79,8 +79,8 @@ func TestFrameFormat(t *testing.T) {
 	}, {
 		initpc,
 		"%+v",
-		"github.com/marmotedu/errors.init\n" +
-			"\t.+/github.com/marmotedu/errors/stack_test.go:9",
+		"github.com/jf-011101/errors.init\n" +
+			"\t.+/github.com/jf-011101/errors/stack_test.go:9",
 	}, {
 		0,
 		"%v",
@@ -98,7 +98,7 @@ func TestFuncname(t *testing.T) {
 	}{
 		{"", ""},
 		{"runtime.main", "main"},
-		{"github.com/marmotedu/errors.funcname", "funcname"},
+		{"github.com/jf-011101/errors.funcname", "funcname"},
 		{"funcname", "funcname"},
 		{"io.copyBuffer", "copyBuffer"},
 		{"main.(*R).Write", "(*R).Write"},
@@ -119,25 +119,25 @@ func TestStackTrace(t *testing.T) {
 		want []string
 	}{{
 		New("ooh"), []string{
-			"github.com/marmotedu/errors.TestStackTrace\n" +
-				"\t.+/github.com/marmotedu/errors/stack_test.go:121",
+			"github.com/jf-011101/errors.TestStackTrace\n" +
+				"\t.+/github.com/jf-011101/errors/stack_test.go:121",
 		},
 	}, {
 		Wrap(New("ooh"), "ahh"), []string{
-			"github.com/marmotedu/errors.TestStackTrace\n" +
-				"\t.+/github.com/marmotedu/errors/stack_test.go:126", // this is the stack of Wrap, not New
+			"github.com/jf-011101/errors.TestStackTrace\n" +
+				"\t.+/github.com/jf-011101/errors/stack_test.go:126", // this is the stack of Wrap, not New
 		},
 	}, {
 		Cause(Wrap(New("ooh"), "ahh")), []string{
-			"github.com/marmotedu/errors.TestStackTrace\n" +
-				"\t.+/github.com/marmotedu/errors/stack_test.go:131", // this is the stack of New
+			"github.com/jf-011101/errors.TestStackTrace\n" +
+				"\t.+/github.com/jf-011101/errors/stack_test.go:131", // this is the stack of New
 		},
 	}, {
 		func() error { return New("ooh") }(), []string{
-			`github.com/marmotedu/errors.TestStackTrace.func1` +
-				"\n\t.+/github.com/marmotedu/errors/stack_test.go:136", // this is the stack of New
-			"github.com/marmotedu/errors.TestStackTrace\n" +
-				"\t.+/github.com/marmotedu/errors/stack_test.go:136", // this is the stack of New's caller
+			`github.com/jf-011101/errors.TestStackTrace.func1` +
+				"\n\t.+/github.com/jf-011101/errors/stack_test.go:136", // this is the stack of New
+			"github.com/jf-011101/errors.TestStackTrace\n" +
+				"\t.+/github.com/jf-011101/errors/stack_test.go:136", // this is the stack of New's caller
 		},
 	}, {
 		Cause(func() error {
@@ -145,12 +145,12 @@ func TestStackTrace(t *testing.T) {
 				return Errorf("hello %s", fmt.Sprintf("world: %s", "ooh"))
 			}()
 		}()), []string{
-			`github.com/marmotedu/errors.TestStackTrace.func2.1` +
-				"\n\t.+/github.com/marmotedu/errors/stack_test.go:145", // this is the stack of Errorf
-			`github.com/marmotedu/errors.TestStackTrace.func2` +
-				"\n\t.+/github.com/marmotedu/errors/stack_test.go:146", // this is the stack of Errorf's caller
-			"github.com/marmotedu/errors.TestStackTrace\n" +
-				"\t.+/github.com/marmotedu/errors/stack_test.go:147", // this is the stack of Errorf's caller's caller
+			`github.com/jf-011101/errors.TestStackTrace.func2.1` +
+				"\n\t.+/github.com/jf-011101/errors/stack_test.go:145", // this is the stack of Errorf
+			`github.com/jf-011101/errors.TestStackTrace.func2` +
+				"\n\t.+/github.com/jf-011101/errors/stack_test.go:146", // this is the stack of Errorf's caller
+			"github.com/jf-011101/errors.TestStackTrace\n" +
+				"\t.+/github.com/jf-011101/errors/stack_test.go:147", // this is the stack of Errorf's caller's caller
 		},
 	}}
 	for i, tt := range tests {
@@ -225,10 +225,10 @@ func TestStackTraceFormat(t *testing.T) {
 		stackTrace()[:2],
 		"%+v",
 		"\n" +
-			"github.com/marmotedu/errors.stackTrace\n" +
-			"\t.+/github.com/marmotedu/errors/stack_test.go:174\n" +
-			"github.com/marmotedu/errors.TestStackTraceFormat\n" +
-			"\t.+/github.com/marmotedu/errors/stack_test.go:225",
+			"github.com/jf-011101/errors.stackTrace\n" +
+			"\t.+/github.com/jf-011101/errors/stack_test.go:174\n" +
+			"github.com/jf-011101/errors.TestStackTraceFormat\n" +
+			"\t.+/github.com/jf-011101/errors/stack_test.go:225",
 	}, {
 		stackTrace()[:2],
 		"%#v",

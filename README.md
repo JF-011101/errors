@@ -2,4 +2,4 @@
 
 性能跟 `github.com/pkg/errors` 基本持平。
 
-该 errors 包匹配的错误码设计请参考：[marmotedu/sample-code](https://github.com/marmotedu/sample-code/blob/master/README.md)
+该 errors 包匹配的错误码设计请参考：[marmotedu/sample-code](https://github.com/jf-011101/ErrnoCode/blob/master/README.md)
